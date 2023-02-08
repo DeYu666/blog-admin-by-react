@@ -1,0 +1,22 @@
+.add-or-update{
+  padding: 10px 30px;
+  border: black 1px solid;
+}
+
+.add-or-update .title {
+  margin-bottom: 60px;
+}
+
+.my-button-container2{
+  text-align: center;
+  margin: 60px 0 30px;
+}
+
+
+.blog .operate{
+  margin-bottom: 20px;
+}
+
+.need-height-200{
+  min-height: 200px;
+}

@@ -1,0 +1,19 @@
+.diary .operate{
+  margin-bottom: 20px;
+}
+
+.need-height-265{
+  min-height: 265px;
+}
+
+.content_close {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.button_open_or_close button {
+  float: right;
+}

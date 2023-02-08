@@ -1,0 +1,27 @@
+
+
+.card-book{
+  min-height: 150px;
+  background-color: #E8E8E8;
+  margin-right: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+
+.card-book-active{
+  background-color: #FFE4C4;
+}
+
+
+.card-book .card-title{
+  padding: 10px 20px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.card-book .card-abstract{
+  padding: 0 20px;
+  font-size: 10px;
+}

@@ -1,0 +1,9 @@
+.logo{
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+}
+.logo span {
+  font-size: 17px;
+  margin-left: 7px;
+}

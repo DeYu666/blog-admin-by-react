@@ -1,0 +1,47 @@
+
+.book .operate, .book-content-operate{
+  margin-bottom: 20px;
+}
+
+
+.add-content-title{
+  position: relative;
+  text-align-last: right;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.add-content-title .add-content-degree-right{
+  display: inline-block;
+  width: 80%;
+  float: right;
+  text-align-last: left;
+}
+
+.add-content-title .add-content-degree-right .ant-picker{
+  float: left;
+}
+
+.need-height-100{
+  min-height: 100px;
+}
+
+.add-content-title .add-content-degree-right2{
+  display: inline-block;
+  width: 90%;
+  float: right;
+  text-align-last: left;
+}
+
+
+.book-cards{
+  max-height: 700px;
+  overflow: scroll;
+}
+
+
+.book-content-single{
+  border: black 1px solid;
+  padding: 5px;
+  border-radius: 4px;
+}
