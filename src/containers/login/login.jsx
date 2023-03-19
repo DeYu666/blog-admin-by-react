@@ -14,7 +14,7 @@ export default function Login() {
     const onFinish = values => {
         // console.log(values)
         LoginForm(values.username,values.password).then(response => {
-            // console.log(response)
+            console.log(response)
 
             if(response.error_code === 0) {
                 cookie.save('token', response.data.access_token)

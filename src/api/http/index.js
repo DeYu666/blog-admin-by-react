@@ -4,7 +4,7 @@ import cookie from "react-cookies";
 axios.defaults.timeout = 100000;
 // axios.defaults.baseURL = "http://localhost:8080";
 // axios.defaults.baseURL = "http://49.234.223.32:8080";
-axios.defaults.baseURL = "http://106.75.246.228:8080";
+axios.defaults.baseURL = "http://asa-zhang.top:8080";
 
 
 
