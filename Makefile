@@ -13,10 +13,25 @@ BASE_PRE := /it/
 all: build
 
 $(TARGETS):
-	cnpm install
-	npm run build
+	yarn install
+	yarn build
 
 build: $(TARGETS)
 
+image:
+	docker build -t $(IMAGE_FULLNAME) . --platform linux/amd64
+
+push-image:
+	docker tag $(IMAGE_FULLNAME) deyu666/$(IMAGE_NAME):latest
+	docker push deyu666/$(IMAGE_NAME):latest
+
+image-fullname:
+	@echo $(IMAGE_FULLNAME)
+
 clean-win:
 	rmdir /s/q build
+
+clean:
+	rm -rf build
+
+.PHONY: all build build-base image image-fullname image-version clean

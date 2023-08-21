@@ -44,6 +44,7 @@ export default function PostListsBlog() {
             render: create_time => (
                 moment(create_time, moment.ISO_8601).format(dateFormat)
             ),
+            defaultSortOrder: 'descend',
         },
         {
             title: '最近修改时间',
@@ -90,8 +91,8 @@ export default function PostListsBlog() {
 
     const readData = () => {
         getPostsList().then((res) => {
-            // console.log(res)
-            setDataSource(res.data)
+            console.log(res)
+            setDataSource(res.data.posts)
         }).catch((error) => {
             console.log(error)
         })

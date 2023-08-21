@@ -14,6 +14,9 @@ export default function LoveContent() {
     const [isVisible, setIsVisible] = useState(false)
     const [confirmLoading, setConfirmLoading] = useState(false)
 
+    const [count, setCount] = useState(0)
+    const [isVisibleAdd, setIsVisibleAdd] = useState(false)
+
     // 数据控制的相关操作
     const [extraInfo, setExtraInfo] = useState("暂无")
     const [loveConfession, setLoveConfession] = useState("1997-12-31")
@@ -24,7 +27,7 @@ export default function LoveContent() {
 
     const readData = () => {
         getLoveInfo().then((res) => {
-            // console.log(res.data)
+            console.log(res.data)
             if (res.data.length >= 0) {
                 let data = res.data[0]
 
@@ -45,6 +48,16 @@ export default function LoveContent() {
         readData()
     }, [])
 
+    useEffect(() => {
+        if (count === 0) {
+            return
+        }
+        if (count % 3 === 0) {
+            setIsVisibleAdd(true)
+        }else{
+            setIsVisibleAdd(false)
+        }
+    }, [count])
 
     const handleAdd = () => {
         setIsVisible(true)
@@ -64,6 +77,7 @@ export default function LoveContent() {
 
         if (loveId <= 0) {
             setLoveId(loveId - 1)
+            data.id = 0
             addLoveInfo(data).then((res) => {
                 console.log(res)
                 readData()
@@ -73,7 +87,7 @@ export default function LoveContent() {
         } else {
             data.id = loveId
             modifyLoveInfo(data).then((res) => {
-                // console.log(res)
+                console.log(res)
                 readData()
             }).catch((error) => {
                 console.log(error)
@@ -85,19 +99,32 @@ export default function LoveContent() {
     }
 
 
+    const addLove = () => {
+       
+        setLoveName("祝你开心")
+        setLoveKnown("1997-12-31")
+        setLoveConfession("1997-12-31")
+        setExtraInfo("要好好对待啊")
+
+        setLoveId(-1)
+        setIsVisible(true)
+    }
+
+
     return (
         <>
 
             <div className={"love"}>
-                <h3>嘿嘿嘿</h3>
+                <h3 onClick={()=>{ setCount(count+1) }}>嘿嘿嘿</h3>
+                <Button style={!isVisibleAdd?{"display":"none"}:{"display":"block"}} onClick={addLove}> 换个角度看世界，世界就会变得不一样</Button>
                 <div className={"love_button"}><Button onClick={handleAdd}>又有新的信息啦！</Button></div>
-                <div className={"love_name"}> 名字: <p>{loveName}</p></div>
-                <div className={"love_known"}> 相识时间: <p>{loveKnown}</p></div>
-                <div className={"love_confession"}> 确立关系: <p>{loveConfession} </p></div>
-                <div className={"love_extraInfo"}> 预留信息: <p> {extraInfo} </p></div>
+                <div className={"love_name"}> <h4>名字:</h4>  <p>{loveName}</p></div>
+                <div className={"love_known"}> <h4>相识时间: </h4><p>{loveKnown}</p></div>
+                <div className={"love_confession"}> <h4>确立关系:</h4> <p>{loveConfession} </p></div>
+                <div className={"love_extraInfo"}> <h4>预留信息: </h4><p> {extraInfo} </p></div>
             </div>
 
-            <Modal title="新增" visible={isVisible}
+            <Modal title="新增" open={isVisible}
                    onCancel={() => (setIsVisible(false))}
                    confirmLoading={confirmLoading}
                    onOk={handleOK}

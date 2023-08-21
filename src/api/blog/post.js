@@ -5,7 +5,7 @@ import http from "../http";
  */
 function getPostsList(){
     return new Promise((resolve, reject) => {
-        http("get",'/blog/getPostsList').then(res => {
+        http("get",'/blog/post').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -16,7 +16,7 @@ function getPostsList(){
 
 function getPostByPostId(id){
     return new Promise((resolve, reject) => {
-        http("get",'/blog/getPostByPostId/'+id).then(res => {
+        http("get",'/blog/post/'+id).then(res => {
             resolve(res);
         },error => {
             console.log("网络异常~",error);
@@ -32,7 +32,7 @@ function getPostByPostId(id){
 function addPost(data){
 
     return new Promise((resolve, reject) => {
-        http("post",'/blog/addPost', data).then(res => {
+        http("post",'/inner/blog/post', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -46,7 +46,7 @@ function addPost(data){
  */
 function modifyPost(data){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/modifyPost', data).then(res => {
+        http("put",'/inner/blog/post', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -60,7 +60,7 @@ function modifyPost(data){
  */
 function deletePost(id){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/deletePost', {id:id}).then(res => {
+        http("delete",'/inner/blog/post/'+id).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -77,7 +77,7 @@ function deletePost(id){
  */
 function getBlogPostPs(){
     return new Promise((resolve, reject) => {
-        http("get",'/blog/getBlogPostPs').then(res => {
+        http("get",'/inner/blog/post_ps').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -91,7 +91,7 @@ function getBlogPostPs(){
  */
 function modifyBlogPostPs(data){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/modifyBlogPostPs', data).then(res => {
+        http("put",'/inner/blog/post_ps', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);

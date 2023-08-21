@@ -5,7 +5,7 @@ import http from "../http";
  */
 function getLoveInfo(){
     return new Promise((resolve, reject) => {
-        http("get",'/love/getLoveInfo').then(res => {
+        http("get",'/love').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -20,7 +20,7 @@ function getLoveInfo(){
 function addLoveInfo(data){
 
     return new Promise((resolve, reject) => {
-        http("post",'/love/addLoveInfo', data).then(res => {
+        http("post",'/inner/love', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -33,8 +33,9 @@ function addLoveInfo(data){
  * 修改嘿嘿嘿
  */
 function modifyLoveInfo(data){
+    console.log(data)
     return new Promise((resolve, reject) => {
-        http("post",'/love/modifyLoveInfo', data).then(res => {
+        http("put",'/inner/love', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -48,7 +49,7 @@ function modifyLoveInfo(data){
  */
 function deleteLoveInfo(id){
     return new Promise((resolve, reject) => {
-        http("post",'/love/deleteLoveInfo', {id:id}).then(res => {
+        http("delete",'/inner/love/' + id, {id:id}).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);

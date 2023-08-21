@@ -5,7 +5,7 @@ import http from "../http";
  */
 function getTags(){
     return new Promise((resolve, reject) => {
-        http("get",'/blog/getTags').then(res => {
+        http("get",'/blog/tag').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -14,16 +14,13 @@ function getTags(){
     })
 }
 
-
-
-
 /**
  * 增加博客标签
  */
 function addTags(data){
 
     return new Promise((resolve, reject) => {
-        http("post",'/blog/addTags', data).then(res => {
+        http("post",'/inner/blog/tag', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -37,7 +34,7 @@ function addTags(data){
  */
 function modifyTags(data){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/modifyTags', data).then(res => {
+        http("put",'/inner/blog/tag', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -51,7 +48,7 @@ function modifyTags(data){
  */
 function deleteTags(id){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/deleteTags', {id:id}).then(res => {
+        http("delete",'/inner/blog/tag/' + id).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);

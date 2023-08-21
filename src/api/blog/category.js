@@ -5,7 +5,7 @@ import http from "../http";
  */
 function getGeneralCate(){
     return new Promise((resolve, reject) => {
-        http("get",'/blog/getGeneralCate').then(res => {
+        http("get",'/blog/general_cate').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -23,7 +23,7 @@ function getGeneralCate(){
 function addGeneralCate(data){
 
     return new Promise((resolve, reject) => {
-        http("post",'/blog/addGeneralCate', data).then(res => {
+        http("post",'/inner/blog/general_cate', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -37,7 +37,7 @@ function addGeneralCate(data){
  */
 function modifyGeneralCate(data){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/modifyGeneralCate', data).then(res => {
+        http("put",'/inner/blog/general_cate', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -45,13 +45,15 @@ function modifyGeneralCate(data){
         })
     })
 }
+
+
 
 /**
  *  删除博客总类
  */
 function deleteGeneralCate(id){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/deleteGeneralCate', {id:id}).then(res => {
+        http("delete",'/inner/blog/general_cate/'+id).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -59,15 +61,13 @@ function deleteGeneralCate(id){
         })
     })
 }
-
-
 
 /**
  * 获取博客分类
  */
 function getCategory(){
     return new Promise((resolve, reject) => {
-        http("get",'/blog/getCategory').then(res => {
+        http("get",'/blog/cate').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -76,15 +76,12 @@ function getCategory(){
     })
 }
 
-
-
-
 /**
  * 增加博客总类
  */
 function addCategory(data){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/addCategory', data).then(res => {
+        http("post",'/inner/blog/cate', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -98,7 +95,7 @@ function addCategory(data){
  */
 function modifyCategory(data){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/modifyCategory', data).then(res => {
+        http("put",'/inner/blog/cate', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -112,7 +109,7 @@ function modifyCategory(data){
  */
 function deleteCategory(id){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/deleteCategory', {id:id}).then(res => {
+        http("delete",'/inner/blog/cate/'+id).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);

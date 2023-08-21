@@ -4,6 +4,7 @@ import {Button, Checkbox, Select, Input, Modal} from 'antd';
 import "./index.less"
 import {addMemoContent, getMemos, modifyMemoStatus} from "../../api/memo";
 import moment from "moment";
+import create from "@ant-design/icons/lib/components/IconFont";
 
 
 const {TextArea} = Input;
@@ -47,17 +48,20 @@ export default function Memo(prop) {
         readData()
     }, [statusId])
 
-    const onChange = (checkedValues) => {
-        console.log("checked = ", checkedValues)
+    const onChange = (memoId) => {
+        console.log("checked = ", memoId)
 
-        console.log(checkedValues[0])
-
-        let data = {
-            content: checkedValues[0]
+        if (memoId.length === 0) {
+            return
         }
 
-        console.log(data)
+        let data = {
+            id: memoId[0],
+            status: 2
+        }
+
         modifyMemoStatus(data).then((res) => {
+            console.log(res)
             readData()
         }).catch((error) => {
             console.log(error)
@@ -65,7 +69,7 @@ export default function Memo(prop) {
 
     }
 
-    const handleOK = () => {
+    const createMemo = () => {
         let data = {
             content: memoContent,
         }
@@ -92,9 +96,9 @@ export default function Memo(prop) {
                 <h3>
                     备忘录 &nbsp;&nbsp;&nbsp;
                     <Select defaultValue={statusId} style={{width: 100}} onChange={handleChange}>
-                        <Option value="2">全部</Option>
-                        <Option value="1">已完成</Option>
-                        <Option value="0">未完成</Option>
+                        <Option value="-1">全部</Option>
+                        <Option value="2">已完成</Option>
+                        <Option value="1">未完成</Option>
                     </Select>
 
                 </h3>
@@ -115,7 +119,7 @@ export default function Memo(prop) {
                                 </div>
                                 {memoContent.content == null?(<div>  出现错误 </div>):(
                                     <div>
-                                    <Checkbox.Group options={memoContent.content.map((data) => (data.content))}
+                                    <Checkbox.Group options={memoContent.content.map((data) => ({ value: data.id, label: data.content }))}
                                                     defaultValue={[]} onChange={onChange}/>
                                 </div>
                                 )}
@@ -133,10 +137,10 @@ export default function Memo(prop) {
             </div>
 
 
-            <Modal title="新增" visible={isVisible}
+            <Modal title="新增" open={isVisible}
                    onCancel={() => (setIsVisible(false))}
                    confirmLoading={confirmLoading}
-                   onOk={handleOK}
+                   onOk={createMemo}
             >
                 <div className={"add-content-title need-height-100"}>内容： <div className={"add-content-degree-right"}>
                     <TextArea defaultValue={memoContent} key={memoId}

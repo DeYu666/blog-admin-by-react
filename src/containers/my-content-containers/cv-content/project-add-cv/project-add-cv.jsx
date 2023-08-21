@@ -76,7 +76,7 @@ export default function ProjectAddCv(props) {
         if (projectId <= 0) {
             setProjectId(projectId - 1)
             addCvProject(data).then((res) => {
-                // console.log(res)
+                console.log(res)
 
                 if (res.error_code === 0){
                     navigate("/backstage/cv/project")

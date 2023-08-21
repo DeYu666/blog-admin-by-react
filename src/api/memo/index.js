@@ -5,7 +5,7 @@ import http from "../http";
  */
 function getMemos(statusId){
     return new Promise((resolve, reject) => {
-        http("get",'/memo/getMemos/'+statusId).then(res => {
+        http("get",'/memo/status/'+statusId).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -19,7 +19,7 @@ function getMemos(statusId){
  */
 function addMemoContent(data){
     return new Promise((resolve, reject) => {
-        http("post",'/memo/addMemoContent', data).then(res => {
+        http("post",'/inner/memo', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -33,7 +33,7 @@ function addMemoContent(data){
  */
 function modifyMemoStatus(data){
     return new Promise((resolve, reject) => {
-        http("post",'/memo/modifyMemoStatus', data).then(res => {
+        http("put",'/inner/memo', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -47,7 +47,7 @@ function modifyMemoStatus(data){
  */
 function deleteMemoContent(id){
     return new Promise((resolve, reject) => {
-        http("post",'/cv/deleteCvExperience', {id:id}).then(res => {
+        http("delete",'/inner/memo', {id:id}).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);

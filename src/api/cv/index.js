@@ -10,7 +10,7 @@ import http from "../http"
  */
 function getCvExperience(){
     return new Promise((resolve, reject) => {
-        http("get",'/cv/getCvExperience').then(res => {
+        http("get",'/profile/experience').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -25,7 +25,7 @@ function getCvExperience(){
 function addCvExperience(data){
 
     return new Promise((resolve, reject) => {
-        http("post",'/cv/addCvExperience', data).then(res => {
+        http("post",'/inner/profile/experience', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -39,7 +39,7 @@ function addCvExperience(data){
  */
 function modifyCvExperience(data){
     return new Promise((resolve, reject) => {
-        http("post",'/cv/modifyCvExperience', data).then(res => {
+        http("put",'/inner/profile/experience', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -53,7 +53,7 @@ function modifyCvExperience(data){
  */
 function deleteCvExperience(id){
     return new Promise((resolve, reject) => {
-        http("post",'/cv/deleteCvExperience', {id:id}).then(res => {
+        http("delete",'/inner/profile/experience/' + id, {id:id}).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -70,7 +70,7 @@ function deleteCvExperience(id){
  */
 function getCvSkill(){
     return new Promise((resolve, reject) => {
-        http("get",'/cv/getCvSkill').then(res => {
+        http("get",'/profile/skill').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -84,7 +84,7 @@ function getCvSkill(){
  */
 function addCvSkill(data){
     return new Promise((resolve, reject) => {
-        http("post",'/cv/addCvSkill',data).then(res => {
+        http("post",'/inner/profile/skill',data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -98,7 +98,7 @@ function addCvSkill(data){
  */
 function modifyCvSkill(data){
     return new Promise((resolve, reject) => {
-        http("post",'/cv/modifyCvSkill',data).then(res => {
+        http("put",'/inner/profile/skill',data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -112,7 +112,7 @@ function modifyCvSkill(data){
  */
 function deleteCvSkill(id){
     return new Promise((resolve, reject) => {
-        http("post",'/cv/deleteCvSkill', {id:id}).then(res => {
+        http("delete",'/inner/profile/skill/'+id).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -131,7 +131,7 @@ function deleteCvSkill(id){
  */
 function getCvProject(){
     return new Promise((resolve, reject) => {
-        http("get",'/cv/getCvProject').then(res => {
+        http("get",'/profile/project').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -143,7 +143,7 @@ function getCvProject(){
 
 function getCvProjectById(id) {
     return new Promise((resolve, reject) => {
-        http("get",'/cv/getCvProjectById/'+id).then(res => {
+        http("get",'/profile/projectById/'+id).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -158,7 +158,7 @@ function getCvProjectById(id) {
  */
 function addCvProject(data){
     return new Promise((resolve, reject) => {
-        http("post",'/cv/addCvProject', data).then(res => {
+        http("post",'/inner/profile/project', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -172,7 +172,7 @@ function addCvProject(data){
  */
 function modifyCvProject(data){
     return new Promise((resolve, reject) => {
-        http("post",'/cv/modifyCvProject', data).then(res => {
+        http("put",'/inner/profile/project', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -186,7 +186,7 @@ function modifyCvProject(data){
  */
 function deleteCvProject(id){
     return new Promise((resolve, reject) => {
-        http("post",'/cv/deleteCvProject', {id:id}).then(res => {
+        http("delete",'/inner/profile/project/' + id, {id:id}).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -201,7 +201,7 @@ function deleteCvProject(id){
  */
 function getCvProjectPs(){
     return new Promise((resolve, reject) => {
-        http("get",'/cv/getCvProjectPs').then(res => {
+        http("get",'/inner/profile/projectPs').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -215,7 +215,7 @@ function getCvProjectPs(){
  */
 function modifyCvProjectPs(data){
     return new Promise((resolve, reject) => {
-        http("post",'/cv/modifyCvProjectPs', data).then(res => {
+        http("put",'/inner/profile/projectPs', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);

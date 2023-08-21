@@ -44,7 +44,7 @@ export default function GeneralCategoryBlog() {
     function delData(data) {
         // console.log(data)
         deleteGeneralCate(data.id).then((res) => {
-            // console.log(res)
+            console.log(res)
             if(res.error_code === 0){
                 readData()
             }else {
@@ -57,7 +57,7 @@ export default function GeneralCategoryBlog() {
 
     const readData = () => {
         getGeneralCate().then(res=>{
-            // console.log(res)
+            console.log(res)
             setDataSource(res.data)
         }).catch(error=>{
             console.log(error)

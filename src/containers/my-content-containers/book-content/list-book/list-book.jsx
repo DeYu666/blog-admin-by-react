@@ -58,7 +58,7 @@ export default function ListBook(){
     const readData = () => {
         getBooksList().then(res => {
             console.log(res)
-            setDataSource(res.data)
+            setDataSource(res.data.shelf_arr)
         }).catch(error => {
             console.log(error)
         })

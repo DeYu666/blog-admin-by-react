@@ -7,7 +7,7 @@ function uploadImageFromPost(file){
     return new Promise((resolve, reject) => {
         blobToDataURL(file, function(dataurl){ 
             var data = {imgBase64:dataurl}
-            http("post",'/tuchuang/uploadImageFromPost',data).then(res => {
+            http("post",'/inner/blog/uploadImage',data).then(res => {
                 resolve(res);
             },error => {
                 console.log("网络异常~",error);

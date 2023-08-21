@@ -5,7 +5,7 @@ import http from "../http";
  */
 function getUser(){
     return new Promise((resolve, reject) => {
-        http("get",'/user/getUser').then(res => {
+        http("get",'/inner/users').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -19,7 +19,7 @@ function getUser(){
  */
 function addUser(data){
     return new Promise((resolve, reject) => {
-        http("post",'/user/addUser',data).then(res => {
+        http("post",'/inner/register',data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -33,7 +33,7 @@ function addUser(data){
  */
 function modifyUser(data){
     return new Promise((resolve, reject) => {
-        http("post",'/user/modifyUser',data).then(res => {
+        http("put",'/inner/user',data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -47,7 +47,7 @@ function modifyUser(data){
  */
 function deleteUser(id){
     return new Promise((resolve, reject) => {
-        http("post",'/user/deleteUser', {id:id}).then(res => {
+        http("delete",'/inner/user/'+id).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);

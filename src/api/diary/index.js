@@ -6,7 +6,7 @@ import http from "../http";
  */
 function getDiary(){
     return new Promise((resolve, reject) => {
-        http("get",'/diary/getDiary').then(res => {
+        http("get",'/diary').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -21,7 +21,7 @@ function getDiary(){
 function addDiary(data){
 
     return new Promise((resolve, reject) => {
-        http("post",'/diary/addDiary', data).then(res => {
+        http("post",'/inner/diary', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -35,7 +35,7 @@ function addDiary(data){
  */
 function modifyDiary(data){
     return new Promise((resolve, reject) => {
-        http("post",'/diary/modifyDiary', data).then(res => {
+        http("put",'/inner/diary', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -49,7 +49,7 @@ function modifyDiary(data){
  */
 function deleteDiary(id){
     return new Promise((resolve, reject) => {
-        http("post",'/diary/deleteDiary', {id:id}).then(res => {
+        http("delete",'/inner/diary/' + id).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -66,7 +66,7 @@ function deleteDiary(id){
  */
 function getDiaryPs(){
     return new Promise((resolve, reject) => {
-        http("get",'/diary/getDiaryPs').then(res => {
+        http("get",'/inner/diary_ps').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -80,7 +80,7 @@ function getDiaryPs(){
  */
 function modifyDiaryPs(data){
     return new Promise((resolve, reject) => {
-        http("post",'/diary/modifyDiaryPs', data).then(res => {
+        http("put",'/inner/diary_ps', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);

@@ -60,8 +60,8 @@ export default function ContentBook(){
 
     const readBookList = () => {
         getBooksList().then(res => {
-            // console.log(res)
-            setDataSourceBooksList(res.data)
+            console.log(res)
+            setDataSourceBooksList(res.data.shelf_arr)
         }).catch(error => {
             console.log(error)
         })

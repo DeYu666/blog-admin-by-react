@@ -127,7 +127,7 @@ export default function ExperienceCv() {
         if (workId <= 0) {
             setWorkId(workId - 1)
             addCvExperience(data).then((res) => {
-                // console.log(res)
+                console.log(res)
                 readData()
             }).catch((error) => {
                 console.log(error)

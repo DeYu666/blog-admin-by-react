@@ -1,11 +1,16 @@
 import axios from "axios";
 import cookie from "react-cookies";
+import { createBrowserHistory } from 'history'
+
+
+let history = createBrowserHistory()
+
 
 axios.defaults.timeout = 100000;
+axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 // axios.defaults.baseURL = "http://localhost:8080";
 // axios.defaults.baseURL = "http://49.234.223.32:8080";
-axios.defaults.baseURL = "http://asa-zhang.top:8080";
-
+// axios.defaults.baseURL = "http://asa-zhang.top:8080";
 
 
 /**
@@ -40,7 +45,9 @@ axios.interceptors.response.use(
         // console.log("http response 拦截器")
         // console.log(response)
 
-        if (response.data.errCode === 2) {
+        if (response.data.error_code === 2000) {
+            history.push('/login')
+            history.go(0)
             console.log("过期");
         }
         return response;
@@ -164,6 +171,29 @@ export function put(url, data = {}) {
 }
 
 
+/**
+ * 封装delete请求
+ * @param url
+ * @param data
+ * @returns {Promise}
+ */
+export function Delete(url, data = {}) {
+    return new Promise((resolve, reject) => {
+        axios.delete(url, data).then(
+            (response) => {
+                resolve(response.data);
+            },
+            (err) => {
+                msag(err);
+                reject(err);
+            }
+        );
+    });
+}
+
+
+
+
 //统一接口处理，返回数据
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (fecth, url, param) {
@@ -171,7 +201,6 @@ export default function (fecth, url, param) {
     return new Promise((resolve, reject) => {
         switch (fecth) {
             case "get":
-                console.log("begin a get request,and url:", url);
                 get(url, param)
                     .then(function (response) {
                         resolve(response);
@@ -191,6 +220,28 @@ export default function (fecth, url, param) {
                         reject(error);
                     });
                 break;
+            case "put":
+                console.log("begin a get request,and url:", url);
+                put(url, param)
+                    .then(function (response) {
+                        resolve(response);
+                    })
+                    .catch(function (error) {
+                        console.log("get request POST failed.", error);
+                        reject(error);
+                    });
+                break;
+            case "delete":
+                Delete(url, param)
+                    .then(function (response) {
+                        resolve(response);
+                    })
+                    .catch(function (error) {
+                        console.log("get request POST failed.", error);
+                        reject(error);
+                    });
+                break;
+
             case "postByFile":
                 postByFile(url, param)
                 .then(function (response) {
@@ -267,3 +318,6 @@ function landing(url, params, data) {
     if (data.code === -1) {
     }
 }
+
+
+

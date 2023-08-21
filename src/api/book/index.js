@@ -6,7 +6,7 @@ import http from "../http";
  */
 function getBooksList(){
     return new Promise((resolve, reject) => {
-        http("get",'/book/getBooksList').then(res => {
+        http("get",'/books_list').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -21,7 +21,7 @@ function getBooksList(){
 function addBooksList(data){
 
     return new Promise((resolve, reject) => {
-        http("post",'/book/addBooksList', data).then(res => {
+        http("post",'/inner/books_list', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -35,7 +35,7 @@ function addBooksList(data){
  */
 function modifyBooksList(data){
     return new Promise((resolve, reject) => {
-        http("post",'/book/modifyBooksList', data).then(res => {
+        http("put",'/inner/books_list', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -49,7 +49,7 @@ function modifyBooksList(data){
  */
 function deleteBooksList(id){
     return new Promise((resolve, reject) => {
-        http("post",'/book/deleteBooksList', {id:id}).then(res => {
+        http("delete",'/inner/books_list/'+id, {id:id}).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -70,7 +70,7 @@ function deleteBooksList(id){
  */
 function getBookContent(bookId){
     return new Promise((resolve, reject) => {
-        http("get",'/book/getBookContentByBookId/'+bookId).then(res => {
+        http("get",'/book_content/'+bookId).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -85,7 +85,7 @@ function getBookContent(bookId){
 function addBookContent(data){
 
     return new Promise((resolve, reject) => {
-        http("post",'/book/addBookContent', data).then(res => {
+        http("post",'/inner/book_content', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -99,7 +99,7 @@ function addBookContent(data){
  */
 function modifyBookContent(data){
     return new Promise((resolve, reject) => {
-        http("post",'/book/modifyBookContent', data).then(res => {
+        http("put",'/inner/book_content', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -113,7 +113,7 @@ function modifyBookContent(data){
  */
 function deleteBookContent(id){
     return new Promise((resolve, reject) => {
-        http("post",'/book/deleteBookContent', {id:id}).then(res => {
+        http("delete",'/inner/book_content/' + id).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);

@@ -5,7 +5,7 @@ import http from "../http";
  */
 function getChickenSoup(){
     return new Promise((resolve, reject) => {
-        http("get",'/blog/getChickenSoup').then(res => {
+        http("get",'/blog/chicken_soup').then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -23,7 +23,7 @@ function getChickenSoup(){
 function addChickenSoup(data){
 
     return new Promise((resolve, reject) => {
-        http("post",'/blog/addChickenSoup', data).then(res => {
+        http("post",'/inner/blog/chicken_soup', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -37,7 +37,7 @@ function addChickenSoup(data){
  */
 function modifyChickenSoup(data){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/modifyChickenSoup', data).then(res => {
+        http("put",'/inner/blog/chicken_soup', data).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);
@@ -51,7 +51,7 @@ function modifyChickenSoup(data){
  */
 function deleteChickenSoup(id){
     return new Promise((resolve, reject) => {
-        http("post",'/blog/deleteChickenSoup', {id:id}).then(res => {
+        http("delete",'/inner/blog/chicken_soup/' + id).then(res => {
             resolve (res);
         },error => {
             console.log("网络异常~",error);

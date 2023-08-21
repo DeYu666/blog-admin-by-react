@@ -9,10 +9,13 @@ import {getCategory} from "../../../../api/blog/category";
 import {getTags} from "../../../../api/blog/tag";
 import {uploadImageFromPost} from "../../../../api/tuchuang"
 
+import "vditor/dist/index.css";
+import Vditor from "vditor";
 
 import ReactMde from "react-mde";
 import * as Showdown from "showdown";
 import "react-mde/lib/styles/css/react-mde-all.css";
+
 
 
 
@@ -43,6 +46,10 @@ const converter = new Showdown.Converter({
   });
 
 
+
+  
+
+
 export default function PostAddBlog() {
 
     let location = useLocation()
@@ -66,8 +73,55 @@ export default function PostAddBlog() {
     const [isOpen, setIsOpen] = useState(true)
     const [createTime, setCreateTime] = useState()
 
-    //  <"write" | "preview">
-    const [selectedTab, setSelectedTab] = useState("preview");
+    useEffect(()=>{
+
+        console.log(content)
+
+        const vditor = new Vditor("vditor", {
+            input: (val) => {
+                console.log(val)
+                setContent(val)
+            },
+            blur: (val) => {
+                // 失焦后触发, 可以设置自动保存
+                console.log(val)
+            },
+            upload: {
+                value: '',
+                accept: 'image/*',
+                // url: 'http://localhost:8080/blog/uploadImage',
+                url: process.env.REACT_APP_BACKEND_URL+'/blog/uploadImage',
+                format: (files, responseStr) => {
+
+                    let resp = {
+                        "msg": "",
+                        "code": 0,
+                        "data": {
+                        "succMap": {}
+                        }
+                    }
+
+                    let responseText = JSON.parse(responseStr)
+
+                    if (responseText.error_code == 0) {
+                        for (let i in responseText.data){
+                            resp.data.succMap[responseText.data[i].file_name] = responseText.data[i].url
+                        }
+                    }
+
+                    return JSON.stringify(resp)
+                }
+            },
+            cache: {
+                enable: false,
+            },
+            after: () => {
+                // 编辑器加载完成后触发
+                vditor.setValue(content, true);
+            }
+        });
+        
+    },[postId])
 
 
 
@@ -76,8 +130,9 @@ export default function PostAddBlog() {
 
         let id = location.state.id
         if (id >= 0) {
+            console.log(id)
             getPostByPostId(id).then(res => {
-                // console.log(res)
+                console.log(res)
                 setTitle(res.data.title)
                 setContent(res.data.content)
                 setImgSrc(res.data.img_src)
@@ -180,6 +235,7 @@ export default function PostAddBlog() {
             rePrint:checkedList,
         }
 
+
         if (postId <= 0) {
             setPostId(postId - 1)
             addPost(data).then((res) => {
@@ -219,7 +275,7 @@ export default function PostAddBlog() {
 
                 <div className={"project-content"}>
 
-                    <ReactMde
+                    {/* <ReactMde
                          value={content}
                          onChange={setContent}
                          selectedTab={selectedTab}
@@ -228,7 +284,9 @@ export default function PostAddBlog() {
                            Promise.resolve(converter.makeHtml(markdown))
                          }
 
-                    />
+                    /> */}
+
+                    <div id="vditor" className={"vditor"}></div>
 
 
                     {/* <Editor defaultValue={content} key={postId}
@@ -239,6 +297,8 @@ export default function PostAddBlog() {
                               }}
                             onChange={(data) => (setContent(data()))}
                     /> */}
+
+
                 </div>
 
                 <div className={"add-content-title"}>
